@@ -16,7 +16,8 @@ class RacesTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print("\(typeIndex)")
+        title = pokedexModel.types[typeIndex].name
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -37,13 +38,15 @@ class RacesTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return pokedexModel.types[typeIndex].races.count
+        
+        return pokedexModel.types[typeIndex].races.count // cuento los races
+        
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "raceCell", for: indexPath)
+        
         
         let type = pokedexModel.types[typeIndex]
         let race = type.races[indexPath.row]
@@ -51,6 +54,8 @@ class RacesTableViewController: UITableViewController {
         cell.detailTextLabel?.text = "\(race.code)"
         cell.detailTextLabel?.textColor = UIColor.red
         
+        cell.imageView?.image = UIImage(named: race.icon)
+        /*
         let iconNameSize = "\(race.code)".count
         let iconName: String!
         if iconNameSize == 1 {
@@ -62,7 +67,7 @@ class RacesTableViewController: UITableViewController {
         }
         
         cell.imageView?.image = UIImage(named: iconName)
-        print(iconName)
+        print(iconName)*/
         
         
         return cell
@@ -109,13 +114,15 @@ class RacesTableViewController: UITableViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let wvc = segue.destination as? WebViewController{
-            
-            wvc.pokedexModel = pokedexModel
-            // pokemon que debe mostrar
-            let indexPathPokemon = tableView.indexPathForSelectedRow
-            wvc.raceIndex = indexPathPokemon?.row
-            wvc.typeIndex = typeIndex
+        if segue.identifier == "GoWeb" {
+            if let wvc = segue.destination as? WebViewController{
+                
+                wvc.pokedexModel = pokedexModel
+                // pokemon que debe mostrar
+                let indexPathPokemon = tableView.indexPathForSelectedRow
+                wvc.raceIndex = indexPathPokemon?.row
+                wvc.typeIndex = typeIndex
+            }
         }
     }
 

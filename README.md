@@ -1,3 +1,3 @@
 # Pokedex
 
-Podrás conseguir tener tu propia Pokedex disponible para iOS. Además también puedes acceder a la Wikidex para obtener más información sobre tus Pokemon favoritos.
+Pokedex para tu iOS, con ella podras tener a todos los Pokemon a un solo click. Además, podrás saber más de ellos en la WikiDex!

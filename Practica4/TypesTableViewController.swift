@@ -47,7 +47,7 @@ class TypesTableViewController: UITableViewController {
         let type = pokedexModel.types[indexPath.row]
         cell.typeName?.text = type.name
         cell.numberOfRaces?.text = "\(type.races.count) races"
-        cell.typeIcon?.image =  UIImage(named: "types/\(type.icon).png")
+        cell.typeIcon?.image =   UIImage(named: pokedexModel.types[indexPath.row].icon)
         
         print("\(type.icon).png")
 
@@ -95,10 +95,11 @@ class TypesTableViewController: UITableViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ShowRaces" {
+        if segue.identifier == "goRace" {
             if let rtvc = segue.destination as? RacesTableViewController {
                 rtvc.pokedexModel = pokedexModel
                 let indexPath = tableView.indexPathForSelectedRow //Cojo la fila en la que he pulsado.
+                
                 rtvc.typeIndex = indexPath?.row
             }
         }

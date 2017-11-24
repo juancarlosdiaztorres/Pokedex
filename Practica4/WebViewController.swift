@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import WebKit
 
 class WebViewController: UIViewController {
     
+    
+    @IBOutlet weak var webView: WKWebView!
     var pokedexModel: PokedexModel!
     var typeIndex: Int!
     var raceIndex: Int!
@@ -18,9 +21,9 @@ class WebViewController: UIViewController {
         super.viewDidLoad()
 
         let pokemon = pokedexModel.types[typeIndex].races[raceIndex].name
-        print(pokemon)
+       // print(pokemon)
         
-        pokemonTitle.title = pokemon
+        title = pokemon
         
         let s = "http://es.pokemon.wikia.com/wiki/\(pokemon)"
         let url = URL(string: s)!
